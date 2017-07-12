@@ -158,7 +158,6 @@ fp = open('Sentiment_Analysis_Dataset_Social_Shuffled.csv', 'rb' )
 parse_into_sentiments_and_tags('Sentiment_Analysis_Dataset_Social_Shuffled.csv')
 model_generator('sentences')
 model = gensim.models.Word2Vec.load('model.en')
-print ("The model is loaded.")
 reader = csv.reader( fp, delimiter=',', quotechar='"', escapechar='\\' )
 train_len,test_len = 800000,200000
 train_arrays,train_labels = numpy.zeros((train_len,200)),numpy.zeros(train_len)
@@ -175,9 +174,6 @@ for row in reader:
     count+=1
     if count>=(train_len+test_len):
         break
-    
-print ("Done making Arrays")
-print ("Starting Training and Testing")
 
 train_test_classifiers(train_arrays,train_labels,test_arrays,test_labels)
 train_test_rnn(train_arrays,train_labels,test_arrays,test_labels)
